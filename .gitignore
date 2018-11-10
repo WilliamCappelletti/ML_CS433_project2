@@ -4,6 +4,9 @@ data/
 /Data
 Data/
 
+## jupyter notebook
+*.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

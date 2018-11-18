@@ -1,5 +1,5 @@
 # ML_project_2
-second project for the course of machine learning CS433 in collaboration with the Laboratory of Computational Systems Biotechnology (SB/SV/STI) LCSB 
+second project for the course of machine learning CS433 in collaboration with the Laboratory of Computational Systems Biotechnology (SB/SV/STI) LCSB, based on the article "Particle-based simulation reveals macromolecular crowding effects on the Michaelis-Menten mechanism", by Weilandt, Daniel R and Hatzimanikatis, Vassily.
 
 ### Prerequisites
 
@@ -12,3 +12,10 @@ The folder structure has to be the following:
     └── README.md
  
 
+### References:
+
+Particle-based simulation reveals macromolecular crowding effects on the Michaelis-Menten mechanism
+
+Daniel R Weilandt, Vassily Hatzimanikatis
+
+doi: https://doi.org/10.1101/429316 

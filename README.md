@@ -14,8 +14,6 @@ The folder structure has to be the following:
 
 ### References:
 
-Particle-based simulation reveals macromolecular crowding effects on the Michaelis-Menten mechanism
-
-Daniel R Weilandt, Vassily Hatzimanikatis
-
+Particle-based simulation reveals macromolecular crowding effects on the Michaelis-Menten mechanism                                    
+Daniel R Weilandt, Vassily Hatzimanikatis                                                                                           
 doi: https://doi.org/10.1101/429316 

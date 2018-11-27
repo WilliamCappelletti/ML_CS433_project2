@@ -36,12 +36,13 @@ def plot_fig2_supp(data_k_conc, k, k_label, conc, conc_label):
     conc can take: 'E', 'ES', 'S', 'P'
     k_label and conc_label are the desired axes labels'''
 
-    # prepare figure
+    # prepare figure with colour condition on the volume fraction
     fg = sns.FacetGrid(data=data_k_conc, hue='volume_fraction', size = 4, aspect = 1.4,
                  palette= {0: 'b', 0.3: "#b54334", 0.5: "g"})
     ax = fg.axes[0][0]
     ax.set(xscale="log", yscale="log")
 
+    # plot the rate constant vs. concentration
     fg.map(plt.scatter, conc, k).add_legend()
 
     # title and axis labels

@@ -25,7 +25,7 @@ what has been done:
  (everyone is welcome to check that).
 
   - And now the important part about the regression: Already **there is a mistake in the labelling of the heteroscedasticity figure**, the x-axis should by yi and not yi_hat.
- The y-axis is (y_hat-y)/y (He divides by y to have nice numbers between -1 and 1). Now, the procedure of how he does this conditional stuff: He fits a linear regression on the WHOLE MODEL 
+ The y-axis is (y_hat-y)/y (He divides by y to have nice numbers between -1 and 1). Now, the procedure of how he does this conditional stuff: He fits a linear regression on the WHOLE MODEL
 (alpha on the 4 concentrations and separately for each condition of mu_mass, volume_fraction, sigma_mass, and for each kj), and then he attributes the values of yi (not fitted y) into 10 bins.
  In each bin, he calculates the variance (sqrt(RSS/n-2), he only uses VAR from the package) and then 1/variance will be a weight_i attributed to yi. So in the end, every yi has in addition a wi,
  and then he fits a **weighted linear regression** (simply using statsmodel library).
@@ -35,3 +35,6 @@ what has been done:
 # 23.11.2018
 
 - Charles has coded a function to modify the data in a proper form to do the replication of the paper
+
+# 27.11.2018
+- Charles coded a function to return the weights used in the linear regression in the paper, has to be checked: gives results very close to the results in the csv files in the supplement information, but not quite that 

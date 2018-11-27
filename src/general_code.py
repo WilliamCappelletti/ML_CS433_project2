@@ -10,3 +10,6 @@
         general_code.william.module_test() // return 0'''
 
 import william, charles, marie
+import numpy as np
+import statsmodels.api as statsmodels
+from pandas import DataFrame

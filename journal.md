@@ -37,4 +37,4 @@ what has been done:
 - Charles has coded a function to modify the data in a proper form to do the replication of the paper
 
 # 27.11.2018
-- Charles coded a function to return the weights used in the linear regression in the paper, has to be checked
+- Charles coded a function to return the weights used in the linear regression in the paper, has to be checked: gives results very close to the results in the csv files in the supplement information, but not quite that 

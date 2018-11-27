@@ -37,4 +37,8 @@ what has been done:
 - Charles has coded a function to modify the data in a proper form to do the replication of the paper
 
 # 27.11.2018
-- Charles coded a function to return the weights used in the linear regression in the paper, has to be checked: gives results very close to the results in the csv files in the supplement information, but not quite that 
+- Charles coded a function to return the weights used in the linear regression in the paper, has to be checked: gives results very close to the results in the csv files in the supplement information, but not quite that
+
+- Marie has coded a function to return the data needed to plot the supplementary figure 2 and another function which plots 1 subplot of this figure (given a k and a concentration). The resulting subplots has a larger variation in the data than the plot in the paper.
+Question: Is the data already conditionally transformed in the plot supp. Fig. 2, and thus the variation is smaller?
+Enhancement: Write code to generate the whole figure (16 subplots) for all the combinations of rate constants and concentrations.

@@ -42,3 +42,7 @@ what has been done:
 - Marie has coded a function to return the data needed to plot the supplementary figure 2 and another function which plots 1 subplot of this figure (given a k and a concentration). The resulting subplots has a larger variation in the data than the plot in the paper.
 Question: Is the data already conditionally transformed in the plot supp. Fig. 2, and thus the variation is smaller?
 Enhancement: Write code to generate the whole figure (16 subplots) for all the combinations of rate constants and concentrations.
+
+# 28.11.2018
+
+- _William_ coded function `cast_categories`, should be easy to use.

@@ -11,6 +11,7 @@
 
 import william, charles, marie
 import numpy as np
+import pandas as pd
 import statsmodels.api as statsmodels
 from pandas import DataFrame
 

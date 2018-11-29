@@ -49,4 +49,8 @@ Enhancement: Write code to generate the whole figure (16 subplots) for all the c
 
 # 28.11.2018
 - Marie created a function 'regression_results' to generate the dataframe with the regression results from the supplementary data. A demonstration is in Marie_test together with a codeline to ouput the corresponding csv file.
-The resulting values are almost exactly the same than in the supplementary data. 
+The resulting values are almost exactly the same than in the supplementary data.
+
+# 29.11.2018
+
+- _William_ tried RidgeCV on simple set and w/ interactions. Nice results (0.09525 MSE on test set).

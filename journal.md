@@ -54,3 +54,4 @@ The resulting values are almost exactly the same than in the supplementary data.
 # 29.11.2018
 
 - _William_ tried RidgeCV on simple set and w/ interactions. Nice results (0.09525 MSE on test set).
+- _William_ tested various regressions (will be added to .py in future). As for now best performance on `k1_bkw_effective` (test MSE *0.0129*, R\^2 0.98833) with RidgeCV polynomial deg 2 and all interactions. All concentrations are log transformed as well as the response.

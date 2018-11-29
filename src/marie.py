@@ -90,7 +90,7 @@ def regression_results(data):
                     results_reg[0:20:4] = model_k.params
                     results_reg[1:20:4] = model_k.conf_int(alpha=0.05)[0]
                     results_reg[2:20:4] = model_k.conf_int(alpha=0.05)[1]
-                    results_reg[2:20:4] = model_k.pvalues
+                    results_reg[3:20:4] = model_k.pvalues
 
                     # create result vector with conditions, rate constant name & regression result
                     result = m + [v, rate_constant_name[name]]

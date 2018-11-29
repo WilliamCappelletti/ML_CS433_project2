@@ -67,7 +67,8 @@ def weights_obtain(data):
 
 
     return the weights necessary to replicate the weighted linear model of the paper for
-    each regression
+    each regression: each observations is first cast into groups depending on its residual value, then
+    it is weighted as 1/ variance of the group it has been cast into. 
     '''
     weights = pd.DataFrame()
 

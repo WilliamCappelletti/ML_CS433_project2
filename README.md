@@ -19,3 +19,8 @@ Daniel R Weilandt, Vassily Hatzimanikatis
 doi: https://doi.org/10.1101/429316 
 
 Seabold, Skipper, and Josef Perktold. “Statsmodels: Econometric and statistical modeling with python.” Proceedings of the 9th Python in Science Conference. 2010.
+
+
+### Links 
+
+overleaf report: https://www.overleaf.com/9168994853jnrbvbtpzrsf

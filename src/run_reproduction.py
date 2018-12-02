@@ -67,8 +67,11 @@ def Data_prep_replication(file):
     return data_trans
 
 def regression_results(data):
-    '''Function to produce the regression results from the table in the supplementary material
-    Input: prepared dataframe (output from: charles.Data_prep_replication(FILE))'''
+    '''
+    Function to produce the regression results from the table in the supplementary material
+    Input: prepared dataframe (output from: Data_prep_replication(FILE))
+    '''
+    
     # initialize all the combinations
     Mass_median_sigma = [[31.9, 0.825], [12.1, 0], [21.1, 0], [36.8, 0]]
     volume_fraction = [0, 0.1, 0.2, 0.3, 0.4, 0.5]

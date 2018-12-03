@@ -59,3 +59,8 @@ The resulting values are almost exactly the same than in the supplementary data.
 # 02.12.2018
 
 - _Charles_ coded the `run_reproduction.py` which reproduces the results of the paper and save them in `results/reproduction.csv`
+
+# 3.12.2018
+
+- _Marie_ has written the introduction of the report (up to the current knowledge of the project frame)
+- _Marie_ created a function "plot_fig2_plot" to plot the whole figure 2 of supplementary materials (16 subplots). Resulting figure is saved in "../results/Fig2_supp.png"

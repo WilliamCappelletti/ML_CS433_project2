@@ -68,3 +68,4 @@ The resulting values are almost exactly the same than in the supplementary data.
 # 4.12.2018
 
 - _Charles_ has written the first part on the reproduction model but some results seem strange and have to be checked again (see the comments in the report)
+- _Charles_ coded a function to get the goodness of fit of the model from the original paper

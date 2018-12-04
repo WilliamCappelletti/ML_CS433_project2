@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
-import charles
+import reproduction
 
 def data_prep_fig2_subplot(file):
     '''Selects and prepares the data needed to plot the figure 2 of the supplementary material.
@@ -116,7 +116,7 @@ def plot_fig2_plot(file):
 
 def regression_results(data):
     '''Function to produce the regression results from the table in the supplementary material
-    Input: prepared dataframe (output from: charles.Data_prep_replication(FILE))'''
+    Input: prepared dataframe (output from: reproduction.Data_prep_replication(FILE))'''
     # initialize all the combinations
     Mass_median_sigma = [[31.9, 0.825], [12.1, 0], [21.1, 0], [36.8, 0]]
     volume_fraction = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
@@ -135,7 +135,7 @@ def regression_results(data):
                     continue
                 # select the data of the defined conditions
                 data_reg = data[(data['volume_fraction']==v) & (data['mu_mass'] == m[0]) & (data['sigma_mass']==m[1])]
-                weights = charles.weights_obtain(data_reg)
+                weights = reproduction.weights_obtain(data_reg)
 
                 # build the model matrix
                 X = data_reg[['E','ES','P','S']]

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''Charles' regression code'''
+'''code needed to reproduce the weighted linear regression from the original paper'''
 
 import pandas as pd
 import numpy as np

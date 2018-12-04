@@ -5,6 +5,9 @@ import pandas as pd
 import numpy as np
 import statsmodels.api as sm
 
+#-------------------------------------------------------------------------------
+# utilities to do the reproduciton model
+#-------------------------------------------------------------------------------
 def Data_prep_replication(file):
     '''
     preparation of the data set in order to reproduce the regression form the paper
@@ -68,7 +71,7 @@ def weights_obtain(data):
 
     return the weights necessary to replicate the weighted linear model of the paper for
     each regression: each observations is first cast into groups depending on its residual value, then
-    it is weighted as 1/ variance of the group it has been cast into. 
+    it is weighted as 1/ variance of the group it has been cast into.
     '''
     weights = pd.DataFrame()
 
@@ -106,3 +109,86 @@ def weights_obtain(data):
         weights[name] = weight
 
     return weights
+
+#-------------------------------------------------------------------------------
+# goodness of fit measure
+#-------------------------------------------------------------------------------
+def obtain_measure_goodness_of_fit_reproduction():
+    '''
+    obtain the measures of goodness of fit of the weigthed linear regression that are in the report
+
+    returns R2c, MSE:
+        R2c contains the R2 adjusted of each model. This is defined here as 1 - ssr/centered_tss if the constant is included in the model and 1 - ssr/uncentered_tss if the constant is omitted.
+        MSE contains the total mean squared error. Defined as the uncentered total sum of squares divided by n the number of observations.
+
+    for each volume fraction tested ([0.1,0.2,0.3,0.4,0.5]]) it will return a vector with the data corresponding to the model in the following order:
+        ['log_k1_bwd','log_k1_bwd','log_k2_bwd','log_k2_fwd']
+    '''
+
+    file = "../Data/result_full_factorial_pgm.csv"
+
+    data = Data_prep_replication(file)
+
+
+    #do the regression for some fixed value of mu and sigma
+
+    mu = 31.9
+    sigma = 0.825
+
+    volumes = [0.1,0.2,0.3,0.4,0.5]
+
+    R2c = []
+    MSE = []
+
+    for volume in volumes:
+
+        #create empty container for stocking the measures for this volume fraction
+        r2c = []
+        mse = []
+
+        #select the subset of the data we are interested in
+        data_test = data[(data['volume_fraction']==volume) & (data['mu_mass']==mu) & (data['sigma_mass']==sigma)]
+
+        #build the regression matrix
+        X = data_test[['E','ES','P','S']]
+        X = sm.add_constant(X)
+
+        #compute the weights for the wlr on these data
+        Weights = weights_obtain(data_test)
+
+        #fit the weighted linear model for each response
+        model_y1 = sm.WLS(data_test['log_k1_bwd'],X, weights=Weights.log_k1_bwd).fit()
+        model_y2 = sm.WLS(data_test['log_k1_fwd'],X, weights=Weights.log_k1_fwd).fit()
+        model_y3 = sm.WLS(data_test['log_k2_bwd'],X, weights=Weights.log_k2_bwd).fit()
+        model_y4 = sm.WLS(data_test['log_k2_fwd'],X, weights=Weights.log_k2_fwd).fit()
+
+        #create an iterable on the models
+        models = [model_y1,model_y2,model_y3,model_y4]
+
+        for m in models:
+            #collect the r squared
+            r2c.append(m.rsquared)
+            #collect the mse of the model on its train set
+            mse.append(m.mse_total)
+
+        R2c.append(r2c)
+        MSE.append(mse)
+
+    R = pd.DataFrame(R2c)
+    M = pd.DataFrame(MSE)
+
+    #adding the volume fraction in the dataframe
+    R['volume fraction']= [0.1,0.2,0.3,0.4,0.5]
+    M['volume fraction']= [0.1,0.2,0.3,0.4,0.5]
+
+    #naming the columns
+    header = [np.array(['log_k1_bwd','log_k1_fwd','log_k2_bwd','log_k2_fwd','volume fraction'])]
+    R.columns=header
+    M.columns = header
+
+    #rearranging the order of the columns
+    R = R[['volume fraction','log_k1_bwd','log_k1_fwd','log_k2_bwd','log_k2_fwd']]
+    M = M[['volume fraction','log_k1_bwd','log_k1_fwd','log_k2_bwd','log_k2_fwd']]
+
+
+    return R,M

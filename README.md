@@ -9,6 +9,7 @@ The folder structure has to be the following:
     ├── Data                    # Data files, in .csv
         └── result_full_factorial_pgm.csv
     ├── src                     # Source files
+    ├── results
     └── README.md
  
 

@@ -69,3 +69,8 @@ The resulting values are almost exactly the same than in the supplementary data.
 
 - _Charles_ has written the first part on the reproduction model but some results seem strange and have to be checked again (see the comments in the report)
 - _Charles_ coded a function to get the goodness of fit of the model from the original paper
+
+
+# 6.12.2018
+
+- _Charles_ added the file `prediction_interval.py` which is supposed to compute the prediction interval for a given model and a given point (even multiple). Still has to be tuned for the model we will use. I will try to make it work for ridge for the moment (as of now, purely theoretical, no testing with these functions). It uses bootstrap to evaluate the percentiles of the error distribution (bootstrap parameter is ` r=100` by default for now).

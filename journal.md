@@ -77,3 +77,4 @@ The resulting values are almost exactly the same than in the supplementary data.
 # 6.12.2018
 
 - _Charles_ added the file `prediction_interval.py` which is supposed to compute the prediction interval for a given model and a given point (even multiple). Still has to be tuned for the model we will use. I will try to make it work for ridge for the moment (as of now, purely theoretical, no testing with these functions). It uses bootstrap to evaluate the percentiles of the error distribution (bootstrap parameter is ` r=100` by default for now).
+- _Marie_ did a neural network regression. Preliminary MSE (without any tuning on the parameters, and no scaling of the data): 0.05

@@ -70,6 +70,9 @@ The resulting values are almost exactly the same than in the supplementary data.
 - _Charles_ has written the first part on the reproduction model but some results seem strange and have to be checked again (see the comments in the report)
 - _Charles_ coded a function to get the goodness of fit of the model from the original paper
 
+# 5.12.2018
+- _Marie_ has written the beginning of materials and methods until charles'part of the reproduction of the model
+
 
 # 6.12.2018
 

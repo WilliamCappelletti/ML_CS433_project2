@@ -3,7 +3,7 @@ Functions needed to compute the predction intervals using bootstraping
 '''
 
 import numpy as np
-import pandas as np
+import pandas as pd
 
 
 def bootstrap_resample(X, n=None):
@@ -73,7 +73,7 @@ def prediction_interval(x,model, residuals , data, r= 100):
 
     return percentiles
 
-def prediction_intervals_array((x,model, residuals , data, r= 100):
+def prediction_intervals_array(x,model, residuals , data, r= 100):
     ''' returns the prediction interval for an array x
         usefull to do plots
     Parameters
@@ -96,6 +96,6 @@ def prediction_intervals_array((x,model, residuals , data, r= 100):
 
     for point in x:
 
-        results.append(prediction_interval(point,,model, residuals , data, r))
+        results.append(prediction_interval(point,model, residuals , data, r))
 
     return results

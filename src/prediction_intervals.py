@@ -36,7 +36,7 @@ def prediction_interval(x,model, residuals , data, r= 100):
     ----------
     x : data_like.
         used to get a prediction (e.g. model.predict(x))
-    model : model from which we want to evaluate the prediciton intervals
+    model : model from which we want to evaluate the prediction intervals
     residuals : array_like
         residuals from the training of the model : y - y_hat
     data:
@@ -75,12 +75,12 @@ def prediction_interval(x,model, residuals , data, r= 100):
 
 def prediction_intervals_array(x,model, residuals , data, r= 100):
     ''' returns the prediction interval for an array x
-        usefull to do plots
+        useful to do plots
     Parameters
     ----------
     x : array of points.
         used to get a prediction (e.g. model.predict(x))
-    model : model from which we want to evaluate the prediciton intervals
+    model : model from which we want to evaluate the prediction intervals
     residuals : array_like
         residuals from the training of the model : y - y_hat
     data:

@@ -22,7 +22,7 @@ def cast_categories(frame, column, cat_name = 'Group'):
     new_frame = pd.concat([new_frame.drop(columns=[column]), splitted_cols], axis=1)
     return new_frame
 
-def data_initialization():
+def data_initialization(realiz = False):
     '''Read and split data.
 
     return y1, y2, y3, y4, X'''
@@ -34,7 +34,7 @@ def data_initialization():
     data.drop('Unnamed: 0.1', axis=1, inplace=True)
 
     y1, y2, y3, y4 = np.log(data['k1_bwd_effective']), np.log(data['k1_fwd_effective']), np.log(data['k2_bwd_effective']), np.log(data['k2_fwd_effective'])
-    # realization = data['realization']
+    realization = data['realization']
 
     X = data.drop(columns=['k1_bwd_effective','k1_fwd_effective','k2_bwd_effective','k2_fwd_effective',
                       'k1_bwd_relative','k1_fwd_relative','k2_bwd_relative','k2_fwd_relative', 'realization'])
@@ -45,9 +45,13 @@ def data_initialization():
        'substrate_concentration']] = X[['enzyme_complex_concentration', 'enzyme_concentration', 'product_concentration',
        'substrate_concentration']].apply(lambda x : np.log(x))
 
+    if realiz :
+        return y1, y2, y3, y4, X, realization
     return y1, y2, y3, y4, X
 
 def polynomial_data(X, deg=2, interaction_only=False):
+    '''This function cast polynomial expansion for the 'result_full_factorial_pgm' dataset. '''
+
     X1 = X[['enzyme_complex_concentration', 'enzyme_concentration', 'mu_mass', 'product_concentration',
        'substrate_concentration', 'volume_fraction']].values
     X2 = X[['sigma_mass_0.0', 'sigma_mass_0.825']].values
@@ -55,6 +59,29 @@ def polynomial_data(X, deg=2, interaction_only=False):
     poly = PolynomialFeatures(deg, interaction_only=interaction_only, include_bias=False)
     X1 = poly.fit_transform(X1)
     return np.concatenate((X1, X3, X2), axis = 1)
+
+def train_test_split_realiz(X, Y, realization, **options):
+    '''Function built around sklearn.train_test_split to split result_full_factorial_pgm data inside the same 'realization'
+
+    Takes the same options as sklearn function.
+    '''
+    R = cast_categories(realization.to_frame(), 'realization', 're')
+    X_, Y_ = X[R['re_0.0'].values == 1], Y[R['re_0.0'].values == 1]
+    X_train, X_test, Y_train, Y_test = train_test_split(X_, Y_, **options)
+    for i in range(1, R.shape[1]) :
+        X_, Y_ = X[R['re_{i}.0'.format(i=i)].values == 1], Y[R['re_{i}.0'.format(i=i)].values == 1]
+        X_train_tmp, X_test_tmp, Y_train_tmp, Y_test_tmp = train_test_split(X_, Y_, **options)
+        X_train = np.concatenate((X_train, X_train_tmp))
+        X_test = np.concatenate((X_test, X_test_tmp))
+        Y_train = np.concatenate((Y_train, Y_train_tmp))
+        Y_test = np.concatenate((Y_test, Y_test_tmp))
+
+    if 'random_state' in options :
+        np.random.seed(seed=options['random_state'])
+
+    shuffledIndices = np.random.permutation(X_train.shape[0])
+    return X_train[shuffledIndices], X_test[shuffledIndices], Y_train[shuffledIndices], Y_test[shuffledIndices]
+
 
 def module_test():
     '''Function to test module inclusion'''

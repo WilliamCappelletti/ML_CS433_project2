@@ -110,6 +110,73 @@ def weights_obtain(data):
 
     return weights
 
+
+def regression_results(data):
+    '''
+    Function to produce the regression results from the table in the supplementary material
+    Input: prepared dataframe (output from: Data_prep_replication(FILE))
+    '''
+
+    # initialize all the combinations
+    Mass_median_sigma = [[31.9, 0.825], [12.1, 0], [21.1, 0], [36.8, 0]]
+    volume_fraction = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+    rate_constants = ['log_k1_bwd','log_k1_fwd','log_k2_bwd','log_k2_fwd']
+    rate_constant_name = ['k1_bwd','k1_fwd','k2_bwd','k2_fwd']
+
+    # initialze result list
+    regression_results = []
+
+    # generate the results
+    for m_index, m in enumerate(Mass_median_sigma):
+        for v in volume_fraction:
+
+                # condition to execute v = 0 only once
+                if (v == 0) & (m_index != 0):
+                    continue
+                # select the data of the defined conditions
+                data_reg = data[(data['volume_fraction']==v) & (data['mu_mass'] == m[0]) & (data['sigma_mass']==m[1])]
+                weights = weights_obtain(data_reg)
+
+                # build the model matrix
+                X = data_reg[['E','ES','P','S']]
+                X = sm.add_constant(X)
+
+                # do the regression for each rate constant
+                for name, k in enumerate(rate_constants):
+
+                    # fit the model
+                    model_k = sm.WLS(data_reg[k],X, weights=weights[k]).fit()
+
+                    # store regression results
+                    results_reg = 20*[0]
+                    results_reg[0:20:4] = model_k.params
+                    results_reg[1:20:4] = model_k.conf_int(alpha=0.05)[0]
+                    results_reg[2:20:4] = model_k.conf_int(alpha=0.05)[1]
+                    results_reg[3:20:4] = model_k.pvalues
+
+                    # create result vector with conditions, rate constant name & regression result
+                    result = m + [v, rate_constant_name[name]]
+                    result = result+results_reg
+                    # append the result to the dataframe
+                    regression_results.append(result)
+
+    # convert the result to pandas dataframe
+    regression_results_df = pd.DataFrame(regression_results)
+
+    # add a header
+    header = [np.array(['Median of the Massdistribution in kDa', 'Sigma parameter of the Massdistribution', 'Volume fraction','Rate constant',
+                    'beta','beta','beta', 'beta', 'alpha E', 'alpha E', 'alpha E', 'alpha E',
+                   'alpha ES', 'alpha ES', 'alpha ES', 'alpha ES', 'alpha P', 'alpha P',
+                    'alpha P', 'alpha P', 'alpha S', 'alpha S', 'alpha S', 'alpha S']),
+    np.array(['','','','','Estimate','0.025','0.975', 'p-value', 'Estimate','0.025','0.975',
+              'p-value', 'Estimate','0.025','0.975', 'p-value', 'Estimate','0.025','0.975', 'p-value',
+             'Estimate','0.025','0.975', 'p-value'])]
+
+    regression_results_df.columns=header
+
+    return regression_results_df
+
+
 #-------------------------------------------------------------------------------
 # goodness of fit measure
 #-------------------------------------------------------------------------------

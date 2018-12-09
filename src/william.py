@@ -79,8 +79,9 @@ def train_test_split_realiz(X, Y, realization, **options):
     if 'random_state' in options :
         np.random.seed(seed=options['random_state'])
 
-    shuffledIndices = np.random.permutation(X_train.shape[0])
-    return X_train[shuffledIndices], X_test[shuffledIndices], Y_train[shuffledIndices], Y_test[shuffledIndices]
+    shuffledIndices_tr = np.random.permutation(X_train.shape[0])
+    shuffledIndices_te = np.random.permutation(X_test.shape[0])
+    return X_train[shuffledIndices_tr], X_test[shuffledIndices_te], Y_train[shuffledIndices_tr], Y_test[shuffledIndices_te]
 
 
 def module_test():

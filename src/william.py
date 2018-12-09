@@ -49,7 +49,7 @@ def data_initialization(realiz = False):
         return y1, y2, y3, y4, X, realization
     return y1, y2, y3, y4, X
 
-def polynomial_data(X, deg=2, interaction_only=False):
+def polynomial_data(X, deg=2, interaction_only=False, categories=True):
     '''This function cast polynomial expansion for the 'result_full_factorial_pgm' dataset. '''
 
     X1 = X[['enzyme_complex_concentration', 'enzyme_concentration', 'mu_mass', 'product_concentration',
@@ -58,7 +58,8 @@ def polynomial_data(X, deg=2, interaction_only=False):
     X3 = np.concatenate((X2[:,0].reshape(-1,1) * X1, X2[:,1].reshape(-1,1) * X1), axis=1)
     poly = PolynomialFeatures(deg, interaction_only=interaction_only, include_bias=False)
     X1 = poly.fit_transform(X1)
-    return np.concatenate((X1, X3, X2), axis = 1)
+
+    return np.concatenate((X1, X3, X2) if categories else (X1,X2), axis = 1)
 
 def train_test_split_realiz(X, Y, realization, **options):
     '''Function built around sklearn.train_test_split to split result_full_factorial_pgm data inside the same 'realization'

@@ -82,3 +82,25 @@ The resulting values are almost exactly the same than in the supplementary data.
 # 7.12.2018
 
 - _William_ Added function to partition test and train set accordingly to 'realization'. Can be called through `general_code.william.train_test_split_realiz(X, Y, realization, **options)`
+
+# 9.12.2018
+
+- _William_ Tested XGBoost w/ all parameters, obtained following results for reference (`random_state=0`):
+
+```param = {'max_depth': 10, 'eta': 1, 'silent': 1, 'subsample': 0.8}
+param['reg_alpha'] = 0.7
+param['tree_method'] = 'auto'
+```
+
+
+| **Basic Split**   | k1_bwd_effective        | k1_fwd_effective      | k2_bwd_effective      | k2_fwd_effective        |
+| Train R^2 score : | 0.9998473387084134      | 0.9320515705770434    | 0.9336061187806367    | 0.9998468941946708      |
+| Test R^2 score :  | 0.9998327668131121      | 0.9044628541091241    | 0.9079844560783802    | 0.9998299499127542      |
+| MSE on train :    | 0.00016892049844872915  | 0.011272530817877262  | 0.011042300203797893  | 0.00016941300358912738  |
+| MSE on test :     | 0.00016892049844872915  | 0.01592511076871444   | 0.015402170999581249  | 0.00018993255994884188  |
+
+| **Realization Split**   | k1_bwd_effective        | k1_fwd_effective      | k2_bwd_effective      | k2_fwd_effective        |
+| Train R^2 score :       | 0.9998462810993263      | 0.9245842811125986    | 0.9264154253618001    | 0.9998453360845153      |
+| Test R^2 score :        | 0.9998349020846728      | 0.9133859287922661    | 0.9141212451873022    | 0.9998335706845373      |
+| MSE on train :          | 0.0001715786067975979   | 0.012525293431061416  | 0.012309879971951824  | 0.00017263483729524398  |
+| MSE on test :           | 0.00018297489961710946  | 0.014490412039961872  | 0.014304589653535068  | 0.0001844490310891216   |

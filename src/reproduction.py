@@ -115,6 +115,9 @@ def regression_results(data):
     '''
     Function to produce the regression results from the table in the supplementary material
     Input: prepared dataframe (output from: Data_prep_replication(FILE))
+
+
+    results = regression_results(data)
     '''
 
     # initialize all the combinations
@@ -183,6 +186,8 @@ def regression_results(data):
 def obtain_measure_goodness_of_fit_reproduction():
     '''
     obtain the measures of goodness of fit of the weigthed linear regression that are in the report
+
+    R2,MSE = obtain_measure_goodness_of_fit_reproduction()
 
     returns R2c, MSE:
         R2c contains the R2 adjusted of each model. This is defined here as 1 - ssr/centered_tss if the constant is included in the model and 1 - ssr/uncentered_tss if the constant is omitted.

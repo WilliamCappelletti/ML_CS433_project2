@@ -62,7 +62,8 @@ def polynomial_data(X, deg=2, interaction_only=False, categories=True):
     return np.concatenate((X1, X3, X2) if categories else (X1,X2), axis = 1)
 
 def train_test_split_realiz(X, Y, realization, **options):
-    '''Function built around sklearn.train_test_split to split result_full_factorial_pgm data inside the same 'realization'
+    '''
+    Function built around sklearn.train_test_split to split result_full_factorial_pgm data inside the same 'realization'
 
     Takes the same options as sklearn function.
     '''

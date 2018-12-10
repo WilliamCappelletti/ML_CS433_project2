@@ -26,7 +26,7 @@ def bootstrap_resample(X, n=None):
         n = len(X)
 
     resample_i = np.floor(np.random.rand(n)*len(X)).astype(int)
-    X_resample = np.array(X[resample_i])  # TODO: write a test demonstrating why array() is important
+    X_resample = np.array(X[resample_i])
     return X_resample
 
 

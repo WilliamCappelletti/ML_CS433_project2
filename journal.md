@@ -89,8 +89,7 @@ The resulting values are almost exactly the same than in the supplementary data.
 
 ```param = {'max_depth': 10, 'eta': 1, 'silent': 1, 'subsample': 0.8}
 param['reg_alpha'] = 0.7
-param['tree_method'] = 'auto'
-```
+param['tree_method'] = 'auto'```
 
 
 | **Basic Split**   | k1_bwd_effective        | k1_fwd_effective      | k2_bwd_effective      | k2_fwd_effective        |
@@ -110,3 +109,8 @@ param['tree_method'] = 'auto'
 # 11.12.2018
 
 - _William_ Implemented class easyXGB, works like sklearn methods.
+- _William_ Implemented multi_CV for paramenters tuning in XGBoost, best results:
+
+```{'reg_alpha': 0.5, 'eta': 0.6000000000000001, 'max_depth': 8, 'subsample': 1.0}]
+ MSE on train (CV):  0.00017374707751138672
+ MSE on test (CV) :  0.00018220743742033337```

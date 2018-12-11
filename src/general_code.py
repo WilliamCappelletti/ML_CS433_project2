@@ -9,7 +9,7 @@
 
         general_code.william.module_test() // return 0'''
 
-import william, reproduction, marie
+import regressions, reproduction, marie, models
 # import numpy as np
 # import pandas as pd
 # import statsmodels.api as statsmodels

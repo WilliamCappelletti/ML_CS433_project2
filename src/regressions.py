@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''William's regression code'''
+'''Regression code for different models'''
 
 import numpy as np
 import pandas as pd
@@ -23,9 +23,9 @@ def cast_categories(frame, column, cat_name = 'Group'):
     return new_frame
 
 def data_initialization(realiz = False):
-    '''Read and split data.
+    '''Read and split data into response and features, with the optional list of realizations (simulation number).
 
-    return y1, y2, y3, y4, X'''
+    return y1, y2, y3, y4, X[, realization]'''
     # define data path
     data_folder = '../Data/'
 
@@ -50,7 +50,10 @@ def data_initialization(realiz = False):
     return y1, y2, y3, y4, X
 
 def polynomial_data(X, deg=2, interaction_only=False, categories=True):
-    '''This function cast polynomial expansion for the 'result_full_factorial_pgm' dataset. '''
+    '''This function cast polynomial expansion for the 'result_full_factorial_pgm' dataset.
+    Built around sklearn.PolynomialFeatures.fit_transform().
+
+    Returns a new numpy.array'''
 
     X1 = X[['enzyme_complex_concentration', 'enzyme_concentration', 'mu_mass', 'product_concentration',
        'substrate_concentration', 'volume_fraction']].values

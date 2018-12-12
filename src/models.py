@@ -33,8 +33,8 @@ class easyXGB :
 
         Fit the easyXGB model to y_train and X_train.'''
 
-        for name in parameters:
-            self.params[name] = parameters[name]
+        self.set_params(**parameters)
+        
         dtrain = xgb.DMatrix(X_train, label=y_train)
 
         self.model = xgb.train(params=self.params, dtrain=dtrain)

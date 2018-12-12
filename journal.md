@@ -106,11 +106,12 @@ param['tree_method'] = 'auto'```
 | MSE on train :          | 0.0001715786067975979   | 0.012525293431061416  | 0.012309879971951824  | 0.00017263483729524398  |
 | MSE on test :           | 0.00018297489961710946  | 0.014490412039961872  | 0.014304589653535068  | 0.0001844490310891216   |
 
+```
 # 11.12.2018
 
 - _William_ Implemented class easyXGB, works like sklearn methods.
 - _William_ Implemented multi_CV for paramenters tuning in XGBoost, best results:
 
-```{'reg_alpha': 0.5, 'eta': 0.6000000000000001, 'max_depth': 8, 'subsample': 1.0}]
+`{'reg_alpha': 0.5, 'eta': 0.6000000000000001, 'max_depth': 8, 'subsample': 1.0}]
  MSE on train (CV):  0.00017374707751138672
- MSE on test (CV) :  0.00018220743742033337```
+ MSE on test (CV) :  0.00018220743742033337`

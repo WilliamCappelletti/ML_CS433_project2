@@ -20,9 +20,12 @@ class easyXGB :
     Implement fit, predict and score.
     '''
 
-    def __init__(self, new=False, params_=param):
+    def __init__(self, load=0, params_=param):
         self.params = {} if (params_ is None) else params_
         self._scorer = 'MSE'
+        if load in range(1,5):
+            self.model = xgb.Booster()
+            self.model.load_model('reg_{i}.model'.format(i=load))
 
     def set_params(self, **kwargs):
         for name in kwargs:
@@ -34,7 +37,7 @@ class easyXGB :
         Fit the easyXGB model to y_train and X_train.'''
 
         self.set_params(**parameters)
-        
+
         dtrain = xgb.DMatrix(X_train, label=y_train)
 
         self.model = xgb.train(params=self.params, dtrain=dtrain)
@@ -54,3 +57,9 @@ class easyXGB :
             return mean_squared_error(y_test, y_pred)
         else:
              raise NotImplementedError
+
+    def save(self, number):
+        if number in range(1,5):
+            self.model.save_model('reg_{i}.model'.format(i=number))
+        else :
+            raise NotImplementedError

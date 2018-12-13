@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 import seaborn as sns
 
-
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, explained_variance_score
@@ -47,8 +46,16 @@ limits_u ={ 0.0: {'y1': 2.3, 'y2': 12.69,'y3':13.7,'y4':3.09},
             0.5: {'y1': 0.15,'y2': 13.86,'y3':14.59,'y4': 0.94}}
 
 
+#-------------------------------------------------------------------------------
+# actual plots fucntions
+#-------------------------------------------------------------------------------
+
+
 def compute_mesh_values(x, y, base, covariates, model):
     '''
+
+    functions that compute the predictions of the model on a grid defined by x cross y
+    it returns as output a matrix of values corresponding to the mesh points
 
     exampple of input:
         x = arange(-13,-6,0.01),y = arange(-13,-6,0.01), base = np.array([ES0,mu0,P0,S0,v0]),covariates = ['P','S'], model = xgbReg
@@ -85,11 +92,13 @@ def compute_mesh_values(x, y, base, covariates, model):
 
 #----------------------------------------------------------------------------------------------
 
+        #transform the data into the good format so that our xgboost model can predict based on that
         dtest = xgb.DMatrix(np.matrix.transpose(predict_on))
         result = np.ndarray.round(model.predict(dtest),3)
         return result
 
 
+    #intermediate function needed for the dimensions issues, maybe there is a cleaner way to do it
     def Z_FUNC(X,Y):
         x = np.array([(x, y) for x in X for y in Y])
         result = z_func(x[:,0],x[:,1]).reshape(len(X),len(Y))
@@ -104,6 +113,9 @@ def compute_mesh_values(x, y, base, covariates, model):
 
 def plot_two_covariates(x, y, base, covariates, model,name):
     '''
+    plot the variation of the response (whose name is `name`) when two of the model's covariates are changing on the grid defined by the meshing of x and y
+
+    base is a set of values for the covariates that don't move (usually the median for the concentration and one of the volume fraction)
 
     example of input:
         x = arange(-13,-6,0.01), y = arange(-13,-6,0.01), base = np.array([ES0,mu0,P0,S0,v0]), covariates = ['P','S'], model = xgbReg
@@ -117,8 +129,8 @@ def plot_two_covariates(x, y, base, covariates, model,name):
 
     _min = limits_d[vol][name]
     _max = limits_u[vol][name]
-    print("borne for the plots: ",_min,_max)
 
+    # uncomment the part on the right to try to get a homogeneous color scale amongst the same volume fraction, but it becomes not really readable
     im = imshow(Z,cmap=cm.RdBu)#,vmin = _min, vmax = _max) # drawing the function
 
     #colorbar(im)
@@ -135,11 +147,19 @@ def plot_two_covariates(x, y, base, covariates, model,name):
     plt.ylabel(covariates[1])
 
     plt.title("evolution of "+ thisdict[name]+" wrt to [" + covariates[0] + '] and [' + covariates[1] +']' )
-    #plt.savefig('../results/plots_evolution/volume'+str(base[-1])+'/'+name +covariates[0]+'_'+ covariates[1]+'.pdf', bbox_inches='tight')
-    plt.show()
+    plt.savefig('../results/plots_evolution/volume'+str(base[-1])+'/'+name+"_" +covariates[0]+'_'+ covariates[1]+'.pdf', bbox_inches='tight')
+
+    #uncomment to see the plots
+    #plt.show()
+
+    #clear the plots
+    plt.gcf().clear()
 
 
 def plot_evolution(model_parameters, X,y,name, base):
+    '''
+    train the model xgboost with the response y, with data (X,y), then plot all of the possible pairs of concentration vs y for all volume fraction
+    '''
 
     dtrain1 = xgb.DMatrix(X, label=y)
     xgbReg = xgb.train(params=model_parameters, dtrain=dtrain1)
@@ -151,9 +171,8 @@ def plot_evolution(model_parameters, X,y,name, base):
     index = {'ES':0,'P':2,'S':3}
 
     for v in volumes :
-        print(" ")
-        print("VOLUME ",v)
-        print(" ")
+        print("volume ",v)
+
         base[-1] = v
         done = []
         for i,c1 in enumerate(concentrations):
@@ -174,5 +193,3 @@ def plot_evolution(model_parameters, X,y,name, base):
 
 
                     plot_two_covariates(x1,x2,base = base, covariates = [c1, c2], model = xgbReg, name = str(name))
-                else :
-                    print("combinaison already done: ",c1, " ",c2)

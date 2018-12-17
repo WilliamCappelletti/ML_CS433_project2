@@ -66,6 +66,10 @@ The script produces the plots for all pair of concentrations, for each volume fr
 
 It saves the results in `../results/plots_evolution`, then classes the plots by the value of the volume fraction considered.
 
+### regression.py
+
+This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error. 
+
 ## Links
 
 overleaf report: https://www.overleaf.com/9168994853jnrbvbtpzrsf

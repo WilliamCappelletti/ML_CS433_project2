@@ -6,15 +6,14 @@ The purpose of this project is
 
 ## Libraries used
 We used the following libraries for this project:
- - seaborn
- - matplotlib
- - sklearn
- - Statsmodels
- - xgboost
- 
+
+
  Computational:
 
     numpy (as np)
+    scikit-leran (sklearn)
+    Statsmodel
+    Xgboost
 
 Graphical:
 
@@ -48,8 +47,6 @@ It outputs a .csv file containing the estimate of the coefficient and store it i
 
 overleaf report: https://www.overleaf.com/9168994853jnrbvbtpzrsf
 
-
-## Implementation details
 
 ### Notes on `cross_validation` and `multi_cross_validation`
 

@@ -11,7 +11,7 @@ We used the following libraries for this project:
  Computational:
 
     numpy (as np)
-    scikit-leran (sklearn)
+    sklearn (scikit-learn)
     Statsmodel
     Xgboost
 
@@ -68,7 +68,7 @@ It saves the results in `../results/plots_evolution`, then classes the plots by 
 
 ### regression.py
 
-This script trains different models (svm,lasso,xgboost), selects the best parameters through cross validation, and then chooses the best model by looking at the test error.
+This module contains function that reproduce the best models (ridge,xgboost) obtained, whose parameters have been already cross validated.
 
 ## Links
 

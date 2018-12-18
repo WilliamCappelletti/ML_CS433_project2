@@ -115,3 +115,7 @@ param['tree_method'] = 'auto'```
 `{'reg_alpha': 0.5, 'eta': 0.6000000000000001, 'max_depth': 8, 'subsample': 1.0}]
  MSE on train (CV):  0.00017374707751138672
  MSE on test (CV) :  0.00018220743742033337`
+
+
+# 13.12.2018
+- _Charles_ coded functions to plot the evolution of a response (`y1`,`y2`,`y3`,`y4`) when only two of the concentrations are moving over the three (ES,S,P), for every volume fraction and the other parameters are fixed. Everything is outputted in the folder `/results/plots_evolution`. This seem not really readable and the scale are not the same between all the graphs: just by trying to put the same scale for a fixed volume fraction the changes in the response were not really visible.

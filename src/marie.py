@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''Marie's regression code'''
+'''Contains the code needed for reproducnig the plots of the original paper'''
 
 import pandas as pd
 import numpy as np

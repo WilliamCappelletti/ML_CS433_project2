@@ -74,9 +74,6 @@ The script produces the plots for all pairs of concentrations, for each volume f
 
 It saves the results in `../results/plots_evolution`, then classes the plots by the value of the volume fraction considered.
 
-## Links
-
-overleaf report: https://www.overleaf.com/9168994853jnrbvbtpzrsf
 
 ## References:
 

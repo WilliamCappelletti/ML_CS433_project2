@@ -5,7 +5,7 @@ Second project for the course of machine learning CS433 in collaboration with th
 The purpose of this project is to find a model to unravel the effects of crowding on the kinetics of biochemical reactions. The lab provided us with simulated data: the software GEneralized Elementary Kinetics (GEEK), predicts the enzymatic rate constants for varying volume exclusion conditions (i.e. the space occupied by inert molecules representative for a crowded environment), mass and mass distribution of the inert  molecules,  and  reactive  species  concentrations.  Starting from this simulation data, our study aims to develop a model predicting the rate constants in a black box machine learning approach.
 
 ## Libraries used
-We used the following libraries for this project:
+We used the following libraries for this project, with Python 3.6.5
 
 
  Computational:
@@ -32,16 +32,23 @@ To install some of the libraries mentionned before , please use the following co
 The folder structure has to be the following:
 
     .
-    ├── Data                    # Data files, in .csv
+    ├── Data                              # Data files, in .csv
         └── result_full_factorial_pgm.csv
-    ├── src                     # Source files
-        └── reproduction.py
+    ├── src                               # Source files
+        └── Run_general.py
     ├── results
-         └── plots_evolution
+        ├── plots_evolution
+        └── reproduction.csv
     └── README.md
 
 
 ## Implementations details
+
+### run_regression.py
+
+This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error.
+
+
 ### run_reproduction.py
 
 Import function from `reproduction.py`
@@ -49,6 +56,7 @@ Import function from `reproduction.py`
 This script reproduce the model described in the original article, which is a weighted linear model (see the report for more details on the weigthing process).
 
 It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`
+
 
 ### figure_generation.py
 
@@ -66,13 +74,6 @@ The script produces the plots for all pairs of concentrations, for each volume f
 
 It saves the results in `../results/plots_evolution`, then classes the plots by the value of the volume fraction considered.
 
-### regression.py
-
-This module contains function that reproduce the best models (ridge,xgboost) obtained, whose parameters have been already cross validated.
-
-## Links
-
-overleaf report: https://www.overleaf.com/9168994853jnrbvbtpzrsf
 
 ## References:
 

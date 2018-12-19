@@ -32,7 +32,7 @@ def data_prep_fig2_subplot(file):
     return data_k_conc
 
 
-def plot_fig2_subplot(data_k_conc, k, k_label, conc, conc_label):
+def plot_fig2_subplot(data_k_conc, k, k_label, conc, conc_label, save = False):
     '''Plots 1 subplot of the figure 2 of the supplementary data.
     data_k_conc should be the output of the function 'data_prep_fig2_subplot'
     k can take one of the following variable names: 'k1_bwd_relative', 'k1_fwd_relative', 'k2_bwd_relative', 'k1_bwd_relative'
@@ -51,6 +51,8 @@ def plot_fig2_subplot(data_k_conc, k, k_label, conc, conc_label):
     # title and axis labels
     ax.set_xlabel(conc_label, fontsize = 12)
     ax.set_ylabel(k_label, fontsize = 12)
+    if save:
+        fg.savefig("../results/Fig2_report.png", dpi= 300)
     return
 
 def data_prep_fig2_plot(file):

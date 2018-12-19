@@ -46,7 +46,7 @@ The folder structure has to be the following:
 
 ### Run_general.py
 
-This script runs everything we used in the project, which is the reproduction part (`run_reproduction.py`), and the amelioration of the machine learning model (`regression.py`). To see more details about these different scripts, see below
+This script runs everything we used in the project, which is the reproduction part (`run_reproduction.py`), and the amelioration of the machine learning model (`regression.py`). To see more details about these different scripts, see below.
 
 
 ### run_reproduction.py

@@ -44,9 +44,9 @@ The folder structure has to be the following:
 
 ## Implementations details
 
-### Run_general.py
+### run_regression.py
 
-This script runs everything we used in the project, which is the reproduction part (`run_reproduction.py`), and the amelioration of the machine learning model (`regression.py`). To see more details about these different scripts, see below.
+This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error.
 
 
 ### run_reproduction.py
@@ -57,9 +57,6 @@ This script reproduce the model described in the original article, which is a we
 
 It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`
 
-### regression.py
-
-This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error.
 
 ### figure_generation.py
 

@@ -35,13 +35,20 @@ The folder structure has to be the following:
     ├── Data                    # Data files, in .csv
         └── result_full_factorial_pgm.csv
     ├── src                     # Source files
-        └── reproduction.py
+        └── Run_general.py
     ├── results
-         └── plots_evolution
+        ├── plots_evolution
+        └── reproduction.csv
     └── README.md
 
 
 ## Implementations details
+
+### Run_general.py
+
+This script runs everything we used in the project, which is the reproduction part (`run_reproduction.py`), and the amelioration of the machine learning model (`regression.py`). To see more details about these different scripts, see below
+
+
 ### run_reproduction.py
 
 Import function from `reproduction.py`
@@ -50,11 +57,15 @@ This script reproduce the model described in the original article, which is a we
 
 It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`
 
-### marie.py 
+### regression.py
+
+This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error.
+
+### marie.py
 
 explains what it does
 
-### run_plots.py 
+### run_plots.py
 
 Import function from `plots.py`
 
@@ -65,10 +76,6 @@ The fixed values are usually fixed as being the median of what we had in our tra
 The script produces the plots for all pair of concentrations, for each volume fraction and for each output.
 
 It saves the results in `../results/plots_evolution`, then classes the plots by the value of the volume fraction considered.
-
-### regression.py
-
-This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error. 
 
 ## Links
 

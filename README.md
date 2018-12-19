@@ -5,7 +5,7 @@ Second project for the course of machine learning CS433 in collaboration with th
 The purpose of this project is to find a model to unravel the effects of crowding on the kinetics of biochemical reactions. The lab provided us with simulated data: the software GEneralized Elementary Kinetics (GEEK), predicts the enzymatic rate constants for varying volume exclusion conditions (i.e. the space occupied by inert molecules representative for a crowded environment), mass and mass distribution of the inert  molecules,  and  reactive  species  concentrations.  Starting from this simulation data, our study aims to develop a model predicting the rate constants in a black box machine learning approach.
 
 ## Libraries used
-We used the following libraries for this project:
+We used the following libraries for this project, with Python 3.6.5
 
 
  Computational:

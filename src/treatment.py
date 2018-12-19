@@ -60,7 +60,11 @@ def polynomial_data(X, deg=2, interaction_only=False, categories=True):
     X1 = X[['enzyme_complex_concentration', 'enzyme_concentration', 'mu_mass', 'product_concentration',
        'substrate_concentration', 'volume_fraction']].values
     X2 = X[['sigma_mass_0.0', 'sigma_mass_0.825']].values
-    X3 = np.concatenate((X2[:,0].reshape(-1,1) * X1, X2[:,1].reshape(-1,1) * X1), axis=1)
+
+    interaction_poly = PolynomialFeatures(deg-1, interaction_only=interaction_only, include_bias=False)
+    X3 = interaction_poly.fit_transform(X1) if deg > 1 else X1
+    X3 = np.concatenate((X2[:,0].reshape(-1,1) * X3, X2[:,1].reshape(-1,1) * X3), axis=1)
+
     poly = PolynomialFeatures(deg, interaction_only=interaction_only, include_bias=False)
     X1 = poly.fit_transform(X1)
 

@@ -32,9 +32,9 @@ To install some of the libraries mentionned before , please use the following co
 The folder structure has to be the following:
 
     .
-    ├── Data                    # Data files, in .csv
+    ├── Data                              # Data files, in .csv
         └── result_full_factorial_pgm.csv
-    ├── src                     # Source files
+    ├── src                               # Source files
         └── Run_general.py
     ├── results
         ├── plots_evolution

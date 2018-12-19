@@ -89,31 +89,3 @@ def train_test_split_realiz(X, Y, realization, **options):
     shuffledIndices_tr = np.random.permutation(X_train.shape[0])
     shuffledIndices_te = np.random.permutation(X_test.shape[0])
     return X_train[shuffledIndices_tr], X_test[shuffledIndices_te], Y_train[shuffledIndices_tr], Y_test[shuffledIndices_te]
-
-#-------------------------------------------------------------------------------
-# REGRESSIONS
-
-def reproduction_ridge(csv = True, random_state = 33, realization_split = False):
-    '''Ridge reproduction.
-
-    This function reproduces the various ridge regressions prosented in paper,
-    computing the scores (R^2 and MSE) for 'k1_bwd_effective','k1_fwd_effective',
-    'k2_bwd_effective','k2_fwd_effective'.
-
-    Arguments:
-    -csv                    True by default. If true the function output the results in a
-                            .csv file, if false returns the results as a pandas DataFrame.
-    -random_state:          33 by default (used in regressions).
-    -realization_split:     False by default. If False performs usual traint-test split, if True
-                            performs train-test split realization-wise.
-    '''
-    y1, y2, y3, y4, X, realization = regressions.data_initialization(realiz=True)
-
-    X = regressions.polynomial_data(X, 2, categories=True)
-
-    results = pd.DataFrame({'R^2 train score': 4*[0],
-                            'R^2 test score': 4*[0],
-                            'MSE train score': 4*[0],
-                            'MSE test score': 4*[0]}, index = ['k1_bwd_effective','k1_fwd_effective','k2_bwd_effective','k2_fwd_effective'])
-    for y in (y1,y2,y3,y4):
-        X_train, X_test, y_train, y_test = regressions.train_test_split(X, y1, test_size=0.4, random_state = 33)

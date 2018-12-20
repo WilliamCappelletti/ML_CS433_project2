@@ -23,7 +23,7 @@ param = {'max_depth': 10, 'eta': 1, 'silent': 1, 'subsample': 0.8, #default para
  'reg_alpha': 0.7,  'tree_method': 'auto'}
 
 class easyXGB :
-    
+
     '''Wrapper to use XGBooster models with sklearn methods.
     Implement fit, predict and score.
     '''
@@ -199,9 +199,9 @@ class SVRImplement:
     scores                 Contains scores on test and train predictions as a pandas DataFrame.
     '''
 
-    def __init__(self, random_state = 5, realization_split = False):
+    def __init__(self, interactions=True, random_state = 5, realization_split = False):
         y1, y2, y3, y4, X, realization = treatment.data_initialization(realiz=True)
-        X = treatment.polynomial_data(X, 2, interaction_only=True, categories=True)
+        X = treatment.polynomial_data(X, 2, interaction_only=True, categories=True) if interactions else X
 
 
         self.k1_bkw_model = SVR(kernel='rbf', max_iter=5*10**4, cache_size=3000)
@@ -255,6 +255,8 @@ def reproduction_ridge(csv = False, degree=2, interaction_only=False, random_sta
     Arguments:
     -csv                    True by default. If true the function output the predictions in a
                             .csv file.
+    -degree                 2 by default. Degree of polynomial expansion.
+    -interaction_only       False by default. If true the polynomial expansion only contains degree one terms and cross products.
     -random_state:          7 by default (used in regressions).
     -realization_split:     False by default. If False performs usual traint-test split, if True
                             performs train-test split realization-wise.
@@ -271,7 +273,7 @@ def reproduction_ridge(csv = False, degree=2, interaction_only=False, random_sta
 
     return fitted_model
 
-def reproduction_svr(csv = False, random_state = 5, realization_split = False):
+def reproduction_svr(csv = False, interactions=True, random_state = 5, realization_split = False):
 
     '''Support Vector Regression reproduction.
 
@@ -284,6 +286,8 @@ def reproduction_svr(csv = False, random_state = 5, realization_split = False):
     Arguments:
     -csv                    True by default. If true the function output the predictions in a
                             .csv file.
+
+    -interactions           If True (default) fits SVR on the interaction model, else fits it to the basic design matrix.
     -random_state:          5 by default (used in regressions).
     -realization_split:     False by default. If False performs usual traint-test split, if True
                             performs train-test split realization-wise.
@@ -291,7 +295,7 @@ def reproduction_svr(csv = False, random_state = 5, realization_split = False):
 
     #y1, y2, y3, y4, X = treatment.data_initialization()
 
-    fitted_model = SVRImplement(random_state, realization_split)
+    fitted_model = SVRImplement(interactions, random_state, realization_split)
 
     if csv:
         _, _, _, _, X = treatment.data_initialization()

@@ -46,8 +46,9 @@ The folder structure has to be the following:
 
 ### run_regression.py
 
-This script trains different models (svm,lasso,xgboost), select the best parameters trough cross validation, and then choose the best model by looking at the test error.
+Import functions from `regressions.py`
 
+This script trains our model xgboost with its best parameter
 
 ### run_reproduction.py
 
@@ -58,7 +59,9 @@ This script reproduce the model described in the original article, which is a we
 It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`
 
 
-### figure_generation.py
+### run_reproduction_figure.py
+
+Import functions from `figure_generation.py`
 
 This script plots the figure 2 of the supplementary material of the paper, which is a figure of the 4 rate constants against the 4 concentrations (plot with 16 subfigures). This figure essentially shows the influence of the input variables (concentrations) on the outcome variables (rate constants) for different volume fractions which are colour-coded. The output is in `../results/Fig2_supp.png`.
 
@@ -74,6 +77,9 @@ The script produces the plots for all pairs of concentrations, for each volume f
 
 It saves the results in `../results/plots_evolution`, then classes the plots by the value of the volume fraction considered.
 
+### regressions.py
+
+Contains the code needed to train the different models we discuss in the paper
 
 ## References:
 

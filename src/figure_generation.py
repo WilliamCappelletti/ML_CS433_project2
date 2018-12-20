@@ -114,7 +114,7 @@ def plot_fig2_plot(file, save = False):
     fg.axes[2,0].set_ylabel('$k_{2,f,eff}/k_{2,f,0}$')
     fg.axes[3,0].set_ylabel('$k_{1,f,eff}/k_{1,f,0}$')
 
-    plt.show()
+    #plt.show()
     # save the figure
     if save:
         fg.savefig("../results/Fig2_supp.png", dpi= 300)

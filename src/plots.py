@@ -12,7 +12,7 @@ import seaborn as sns
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, explained_variance_score
-import regressions
+import treatment
 
 from matplotlib import rcParams
 

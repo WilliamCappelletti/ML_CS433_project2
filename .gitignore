@@ -1,9 +1,3 @@
-## avoiding large files in data repository to be seen
-/data
-data/
-/Data
-Data/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

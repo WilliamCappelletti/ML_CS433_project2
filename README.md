@@ -17,7 +17,7 @@ We used the following libraries for this project, with Python 3.6.5
 
 Graphical:
 
-    seaborn (as sns)
+    seaborn (as sns) (version 0.9.0)
     matplotlib (as plt)
 
 

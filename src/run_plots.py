@@ -14,7 +14,7 @@ import seaborn as sns
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, explained_variance_score
-import regressions
+import treatment
 
 from matplotlib import rcParams
 
@@ -36,7 +36,7 @@ import plots
 # Load the data
 #-------------------------------------------------------------------------------
 
-y1, y2, y3, y4, X, realization = regressions.data_initialization(realiz=True)
+y1, y2, y3, y4, X, realization = treatment.data_initialization(realiz=True)
 X = X.drop(columns=['sigma_mass_0.0', 'sigma_mass_0.825', 'enzyme_concentration'])
 X_panda = X.copy()
 X = X.values

@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import xgboost as xgb
 
-from sklearn.metrics import mean_squared_error, explained_variance_score
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
 from sklearn.linear_model import RidgeCV, LinearRegression
@@ -64,7 +64,7 @@ class easyXGB :
         if self._scorer == 'MSE':
             return mean_squared_error(y_test, y_pred)
         elif self._scorer == 'R2':
-            return explained_variance_score(y_test, y_pred)
+            return r2_score(y_test, y_pred)
         else :
             raise NotImplementedError
 

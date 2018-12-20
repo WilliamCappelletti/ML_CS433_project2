@@ -51,9 +51,9 @@ Import functions from `regressions.py`, `reproduction.py`,`figure_generation.py`
 
 Jupyter notebook in which we reproduce the different tables and figures we use in our report.
 
-    Reproduce the model described in the original article, which is a weighted linear model (see the report for more details on the weighting process).It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`.
+> Reproduce the model described in the original article, which is a weighted linear model (see the report for more details on the weighting process).It outputs a .csv file containing the estimate of the coefficient and store it in `../results/reproduction.csv`.
 
-    Plots the figure 2 of the supplementary material of the paper, which is a figure of the 4 rate constants against the 4 concentrations (plot with 16 subfigures). This figure essentially shows the influence of the input variables (concentrations) on the outcome variables (rate constants) for different volume fractions which are color-coded. The output is in `../results/Fig2_supp.png`.
+> Plots the figure 2 of the supplementary material of the paper, which is a figure of the 4 rate constants against the 4 concentrations (plot with 16 subfigures). This figure essentially shows the influence of the input variables (concentrations) on the outcome variables (rate constants) for different volume fractions which are color-coded. The output is in `../results/Fig2_supp.png`.
 
 
 

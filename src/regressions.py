@@ -23,6 +23,7 @@ param = {'max_depth': 10, 'eta': 1, 'silent': 1, 'subsample': 0.8, #default para
  'reg_alpha': 0.7,  'tree_method': 'auto'}
 
 class easyXGB :
+    
     '''Wrapper to use XGBooster models with sklearn methods.
     Implement fit, predict and score.
     '''
@@ -74,6 +75,7 @@ class easyXGB :
             raise NotImplementedError
 
 class XGBImplement:
+
     '''Model that include easyXGB implentation for the 4 responses.
     Methods:
     predict(self, X_test)  Predict values for the log of 'k1_bwd_effective','k1_fwd_effective', 'k2_bwd_effective','k2_fwd_effective' using our model.
@@ -81,6 +83,7 @@ class XGBImplement:
     Variables:
     scores                 Contains scores on test and train predictions as a pandas DataFrame.
     '''
+
     def __init__(self, random_state = 33, realization_split = False):
         y1, y2, y3, y4, X, realization = treatment.data_initialization(realiz=True)
         X = X.drop(columns=['sigma_mass_0.0', 'sigma_mass_0.825', 'enzyme_concentration'])
@@ -108,10 +111,12 @@ class XGBImplement:
             self.scores.loc[index] = model.score(X_train, y_train), model.score(X_test, y_test), mean_squared_error(y_train, y_pred_tr),  mean_squared_error(y_test, y_pred_te)
 
     def predict(self, X_test):
+
         ''' Predict values for the log of 'k1_bwd_effective','k1_fwd_effective', 'k2_bwd_effective','k2_fwd_effective' using our model.
 
         Returns pandas DataFrame with columns k1_bwd_pred, k1_fwd_pred, k2_bwd_pred, k2_fwd_pred (logscaled)
         '''
+
         X = X_test.drop(columns=['sigma_mass_0.0', 'sigma_mass_0.825', 'enzyme_concentration'])
         X = X.values
 
@@ -128,6 +133,7 @@ class XGBImplement:
 #-------------------------------------------------------------------------------
 # Ridge
 class RidgeImplement:
+
     '''Wrapper of sklearn RidgeCV for our purpose.
 
     Methods:
@@ -183,6 +189,7 @@ class RidgeImplement:
 # Support vector regression
 
 class SVRImplement:
+
     '''Wrapper of sklearn Support vector regression for our purpose.
 
     Methods:
@@ -236,6 +243,7 @@ class SVRImplement:
 # REGRESSIONS
 
 def reproduction_ridge(csv = False, degree=2, interaction_only=False, random_state = 7, realization_split = False):
+
     '''Ridge reproduction.
 
     This function reproduces the various ridge regressions prosented in paper,
@@ -264,6 +272,7 @@ def reproduction_ridge(csv = False, degree=2, interaction_only=False, random_sta
     return fitted_model
 
 def reproduction_svr(csv = False, random_state = 5, realization_split = False):
+
     '''Support Vector Regression reproduction.
 
     This function reproduces the SVR prosented in paper,
@@ -292,6 +301,7 @@ def reproduction_svr(csv = False, random_state = 5, realization_split = False):
     return fitted_model
 
 def reproduction_XGBoost(csv = False, random_state = 33, realization_split = False):
+
     '''XGBoost reproduction.
 
     This function reproduces the best XGBoost regressions obtained,

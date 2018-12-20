@@ -39,8 +39,8 @@ def plot_fig2_subplot(data_k_conc, k, k_label, conc, conc_label, save = False):
     conc can take: 'E', 'ES', 'S', 'P'
     k_label and conc_label are the desired axes labels'''
 
-    # prepare figure with colour condition on the volume fraction
-    fg = sns.FacetGrid(data=data_k_conc, hue='volume_fraction', size = 4, aspect = 1.4,
+    # prepare figure with colour condition on the volume fraction  #size
+    fg = sns.FacetGrid(data=data_k_conc, hue='volume_fraction', height = 4, aspect = 1.4,
                  palette= {0: 'b', 0.3: "#b54334", 0.5: "g"})
     ax = fg.axes[0][0]
     ax.set(xscale="log", yscale="log")
@@ -93,7 +93,7 @@ def plot_fig2_plot(file, save = False):
 
     # prepare the figure
     fg = sns.FacetGrid(data_melt2, col='concentration', row = 'k', hue='volume_fraction',
-                       sharex=False, sharey=False, size=4, aspect = 0.9,
+                       sharex=False, sharey=False, height =4, aspect = 0.9,
                      palette= {0: 'b', 0.3: "#b54334", 0.5: "g"})
 
     # change to logarithmic axes
@@ -114,7 +114,7 @@ def plot_fig2_plot(file, save = False):
     fg.axes[2,0].set_ylabel('$k_{2,f,eff}/k_{2,f,0}$')
     fg.axes[3,0].set_ylabel('$k_{1,f,eff}/k_{1,f,0}$')
 
-    #plt.show()
+    plt.show()
     # save the figure
     if save:
         fg.savefig("../results/Fig2_supp.png", dpi= 300)

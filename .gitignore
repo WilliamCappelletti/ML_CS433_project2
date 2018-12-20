@@ -108,3 +108,19 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+journal\.md
+
+src/exploration\.ipynb
+
+src/Marie_test\.ipynb
+
+src/run_regression\.py
+
+src/run_reproduction_figure\.py
+
+src/run_reproduction\.py
+
+src/test_plots\.ipynb
+
+src/William_Notebook\.ipynb

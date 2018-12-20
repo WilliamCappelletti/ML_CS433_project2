@@ -32,7 +32,7 @@ def data_initialization(realiz = False):
     data_folder = '../Data/'
 
     # read the data
-    data = pd.read_csv(data_folder +'result_full_factorial_pgm.zip', index_col = 0)
+    data = pd.read_csv(data_folder +'result_full_factorial_pgm.csv', index_col = 0)
     data.drop('Unnamed: 0.1', axis=1, inplace=True)
 
     y1, y2, y3, y4 = np.log(data['k1_bwd_effective']), np.log(data['k1_fwd_effective']), np.log(data['k2_bwd_effective']), np.log(data['k2_fwd_effective'])
